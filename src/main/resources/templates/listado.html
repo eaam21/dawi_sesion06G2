@@ -29,15 +29,21 @@
     				<td th:text="${p.precio}"></td>
     				<td th:text="${p.idCategoria}"></td>
     				<td>
+						<a class="btn btn-warning" th:href="@{'/editar/' + ${p.codigo}}" role="button">Editar</a>
+
+						
+						
+						<!--
     					<form action="/editar" method="post">
     						<input type="hidden" name="codigo" th:value="${p.codigo}">
-    						<button type="submit" class="btn btn-info">Editar</button>
+    						<button type="submit" class="btn btn-warning">Editar</button>
     					</form>
+    					-->
     				</td>
     				<td>
     					<form action="@{/eliminar}" method="post">
     						<input type="hidden" name="codigo" th:value="${p.codigo}">
-    						<button type="submit" class="btn btn-info">Eliminar</button>
+    						<button type="submit" class="btn btn-danger">Eliminar</button>
     					</form>
     				</td>
     			</tr>
