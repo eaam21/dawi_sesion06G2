@@ -7,6 +7,8 @@
 </head>
 <body>
 	<div class="container">
+		<img th:src="@{/images/ciberfarma.png}">
+		
 		<h3>Mantenimiento de productos</h3>
 		<form th:action="@{/grabar}" th:object="${producto}" method="post" name="formulario">
 			<div class="form-group">
@@ -32,7 +34,8 @@
 					<label for="inputCategoria">Categoria</label>
 					<select id="inputCategoria" class="form-control" th:field="*{idCategoria}">
 						<option th:value="-1" th:text="Seleccione"></option>
-						<option th:value="1" th:text="Pastillas"></option>
+						<option th:each="c : ${lstCategorias}" th:value="${c.idCategoria}" th:text="${c.descripcion}"></option>
+						<!--<option th:value="1" th:text="Pastillas"></option>-->
 					</select>
 				</div>
 				<div class="form-group col-md-4">
@@ -47,9 +50,13 @@
 					<label for="inputProveedor">Proveedor</label>
 					<select id="inputProveedor" class="form-control" th:field="*{idProveedor}">
 						<option th:value="-1" th:text="Seleccione"></option>
+						<option th:each="p : ${lstProveedores}" th:value="${p.idProveedor}" th:text="${p.nombre}"></option>
+						
+						<!--
 						<option th:value="1" th:text="Pharmalab"></option>
 						<option th:value="2" th:text="Minsa"></option>
 						<option th:value="3" th:text="'La Naturista'"></option>
+						-->
 					</select>
 				</div>
 			</div>
