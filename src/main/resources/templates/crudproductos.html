@@ -12,6 +12,10 @@
 		  <label th:text="${sucess}"></label>
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
+		<div class="alert alert-danger alert-dismissible fade show" th:if="${unsucess}!=null" role="alert">
+		  <label th:text="${unsucess}"></label>
+		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
 		<h3>Mantenimiento de productos</h3>
 		<form th:action="@{/grabar}" th:object="${producto}" method="post" name="formulario">
 			<div class="form-group">

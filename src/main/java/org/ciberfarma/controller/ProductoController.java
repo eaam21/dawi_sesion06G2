@@ -41,15 +41,21 @@ public class ProductoController {
 	
 	@PostMapping("/grabar")
 	public String grabarPag(@ModelAttribute Producto producto, RedirectAttributes attribute) {
-		repo.save(producto);
-		attribute.addFlashAttribute("sucess","Registrado con éxito!");
+		if(repo.save(producto)!=null) {
+			attribute.addFlashAttribute("sucess","Registrado con éxito!");
+		}else {
+			attribute.addFlashAttribute("unsucess","Error registrando!");
+		}
 		return "redirect:/";
 	}
 	
 	@PostMapping("/actualizar")
 	public String actualizarPag(@ModelAttribute Producto producto, RedirectAttributes attribute) {
-		repo.save(producto);
-		attribute.addFlashAttribute("sucess","Actualizado con éxito!");
+		if(repo.save(producto)!=null) {
+			attribute.addFlashAttribute("sucess","Actualizado con éxito!");	
+		}else {
+			attribute.addFlashAttribute("unsucess","Error actualizando!");
+		}
 		return "redirect:/editar/"+producto.getCodigo();
 	}
 	
