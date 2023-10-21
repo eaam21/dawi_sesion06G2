@@ -8,7 +8,10 @@
 <body>
 	<div class="container">
 		<img th:src="@{/images/ciberfarma.png}">
-		
+		<div class="alert alert-success alert-dismissible fade show" th:if="${sucess}!=null" role="alert">
+		  <label th:text="${sucess}"></label>
+		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
 		<h3>Mantenimiento de productos</h3>
 		<form th:action="@{/grabar}" th:object="${producto}" method="post" name="formulario">
 			<div class="form-group">

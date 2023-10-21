@@ -8,12 +8,15 @@
 <body>
 	<div class="container">
 		<img th:src="@{/images/ciberfarma.png}">
-		
+		<div class="alert alert-success alert-dismissible fade show" th:if="${sucess}!=null" role="alert">
+		  <label th:text="${sucess}"></label>
+		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
 		<h3>Editar Producto</h3>
 		<form th:action="@{/actualizar}" th:object="${producto}" method="post" name="formulario">
 			<div class="form-group">
 				<label for="inputCodigo">Código</label>
-				<input th:field="*{codigo}" class="form-control" id="inputCodigo" required minlength="2" maxlength="5" placeHolder="P00" oninvalid="this.setCustomValidity('Ingrese un código de producto')"  oninput="this.setCustomValidity('')">
+				<input th:field="*{codigo}" class="form-control" id="inputCodigo" required minlength="2" maxlength="5" placeHolder="P00" oninvalid="this.setCustomValidity('Ingrese un código de producto')"  oninput="this.setCustomValidity('')" readonly>
 			</div>
 			<div class="form-group">
 				<label for="inputNombre">Nombre del producto</label>

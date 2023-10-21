@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ProductoController {
@@ -29,7 +30,7 @@ public class ProductoController {
 		return "listado";
 	}
 	
-	@GetMapping()
+	@GetMapping("/")
 	public String cargarPag(Model model) {
 		Producto prod = new Producto();
 		model.addAttribute("producto", prod);
@@ -39,15 +40,17 @@ public class ProductoController {
 	}
 	
 	@PostMapping("/grabar")
-	public String grabarPag(@ModelAttribute Producto producto) {
+	public String grabarPag(@ModelAttribute Producto producto, RedirectAttributes attribute) {
 		repo.save(producto);
-		return "exito";
+		attribute.addFlashAttribute("sucess","Registrado con éxito!");
+		return "redirect:/";
 	}
 	
 	@PostMapping("/actualizar")
-	public String actualizarPag(@ModelAttribute Producto producto) {
+	public String actualizarPag(@ModelAttribute Producto producto, RedirectAttributes attribute) {
 		repo.save(producto);
-		return "actualizado";
+		attribute.addFlashAttribute("sucess","Actualizado con éxito!");
+		return "redirect:/editar/"+producto.getCodigo();
 	}
 	
 	@GetMapping("/editar/{codigo}")
@@ -59,9 +62,10 @@ public class ProductoController {
 	}
 	
 	@PostMapping("/eliminar")
-	public String eliminarPag(@ModelAttribute Producto producto) {
+	public String eliminarPag(@ModelAttribute Producto producto, RedirectAttributes attribute) {
 		Producto prod = repo.findByCodigo(producto.getCodigo());
 		repo.delete(prod);
+		attribute.addFlashAttribute("sucess","Eliminado con éxito!");
 		return "redirect:/listar";
 	}
 }
