@@ -57,5 +57,11 @@ public class ProductoController {
 		model.addAttribute("lstProveedores", prov.findAll());
 		return "editar";
 	}
-
+	
+	@PostMapping("/eliminar")
+	public String eliminarPag(@ModelAttribute Producto producto) {
+		Producto prod = repo.findByCodigo(producto.getCodigo());
+		repo.delete(prod);
+		return "redirect:/listar";
+	}
 }
