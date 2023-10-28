@@ -11,7 +11,7 @@
     <div class="container">
     	<h4>Listado de Productos</h4>
 		<a class="btn btn-success" href="/" role="button">Nuevo Producto</a>
-		<div class="alert alert-success alert-dismissible fade show" th:if="${sucess}!=null" role="alert">
+		<div class="alert alert-success alert-dismissible fade show mt-3" th:if="${sucess}!=null" role="alert">
 		  <label th:text="${sucess}"></label>
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
@@ -19,6 +19,7 @@
     	<table class="table table-hover" id="myTable">
     		<thead>
     			<tr>
+					<th scope="col">ID</th>
     				<th scope="col">Código</th>
     				<th scope="col">Nombre</th>
     				<th scope="col">Stock</th>
@@ -30,6 +31,7 @@
     		</thead>
     		<tbody>
     			<tr th:each="p : ${lstProductos}">
+					<td th:text="${pStat.count}+'/'+${pStat.size}"></td>
     				<td th:text="${p.codigo}"></td>
     				<td th:text="${p.descripcion}"></td>
     				<td th:text="${p.stock}"></td>
@@ -55,7 +57,7 @@
 	      	<form th:action="@{/eliminar}" method="post">
 		      <div class="modal-body">
 				 <input type="hidden" name="codigo" id="codigo">
-				  <span id="nombreProducto"></span>
+				  <span id="idProductoLista" style="color: red;font-weight: bold;">&nbsp;</span><span id="nombreProducto"></span>
 		      </div>
 		      <div class="modal-footer">
 		          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancelar </button>
@@ -75,9 +77,10 @@
 				var data = $tr.children("td").map(function(){
 					return $(this).text();
 				}).get();
-				//console.log(data);
-				$('#codigo').val(data[0]);
-				$('#nombreProducto').text("¿Está seguro de eliminar el producto: "+ data[1]+"?");
+				console.log(data);
+				$('#codigo').val(data[1]);
+				$('#idProductoLista').text(data[0]);
+				$('#nombreProducto').text("¿Está seguro de eliminar el producto: "+ data[2]+"?");
 			})
 		});
 	</script>
