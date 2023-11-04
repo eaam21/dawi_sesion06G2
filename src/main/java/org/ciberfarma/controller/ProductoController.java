@@ -30,7 +30,7 @@ public class ProductoController {
 		return "listado";
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/nuevo")
 	public String cargarPag(Model model) {
 		Producto prod = new Producto();
 		model.addAttribute("producto", prod);
