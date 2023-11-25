@@ -1,9 +1,9 @@
 package org.ciberfarma.model;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 @Table(name="tb_usuarios")
